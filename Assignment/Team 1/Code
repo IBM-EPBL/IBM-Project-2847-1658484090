@@ -1,0 +1,62 @@
+#include<Servo.h>
+Servo s;
+int t;
+int n;
+int c;
+int p;
+int a;
+int b;
+int distance;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(2,OUTPUT);
+  pinMode(3,INPUT);
+  pinMode(4,OUTPUT);
+  pinMode(7,OUTPUT);
+  pinMode(A0,INPUT);
+  pinMode(8,INPUT);
+  pinMode(13,OUTPUT);
+  pinMode(12,OUTPUT);
+  s.attach(4);
+}
+void loop()
+{  
+  digitalWrite(2,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(2,LOW);
+  t=pulseIn(3,HIGH);
+  distance=((t*0.034)/2)+2;
+  
+  if(distance<=60)
+  {
+    s.write(90);
+  }
+  else
+  {
+    s.write(0);
+  }
+  
+  n=analogRead(A0);
+  c=map(((n-20)*3.04),0,1023,-40,125);
+  Serial.println(c);
+  
+  if(c>=20)
+  {
+    digitalWrite(7,HIGH);
+  }
+  else
+  {
+    digitalWrite(7,LOW);
+  }
+  
+  p=digitalRead(8);
+  Serial.println(p);
+  digitalWrite(13,LOW);
+  if(p){
+    Serial.println("**Motion Detected**");
+    digitalWrite(13,HIGH);
+  }
+  delay(1000);
+
+}
