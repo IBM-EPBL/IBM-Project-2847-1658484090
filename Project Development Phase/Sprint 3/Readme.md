@@ -1,2 +1,35 @@
-# IBM-Project-2847-1658484090
-Industry-specific intelligent fire management system
+                                                     SPRINT 3
+                                                    
+Check the Project:
+
+WOKWI SIMULATOR LINK : [https://wokwi.com/projects/348062828084593236](https://wokwi.com/projects/348062828084593236)
+
+WEB UI LINK : [https://node-red-dashboard059.eu-gb.mybluemix.net/fire](https://node-red-dashboard059.eu-gb.mybluemix.net/fire)
+
+Results:
+
+![Screenshot (204)](https://user-images.githubusercontent.com/113611989/201425789-2f490855-c34b-42c4-a05f-8b3738735795.png)
+
+
+![image](https://user-images.githubusercontent.com/113611989/201425874-4d92e274-2e31-4a93-be38-62a7087f8cd3.png)
+
+
+TRANSFERRING DATA FROM IBM WATSON INTO NODE-RED:
+
+![image](https://user-images.githubusercontent.com/113611989/201425983-6dd6c9d1-a5d5-464b-ae7b-eae7f8e606a9.png)
+
+
+NODE-RED DASHBOARD:
+
+![image](https://user-images.githubusercontent.com/113611989/201426050-618e5e7c-a575-4a50-88ee-06ae6e32af89.png)
+
+
+TRANSFERRING DATA FROM NODE-RED INTO WEB UI:
+
+![image](https://user-images.githubusercontent.com/113611989/201426117-ec3905a5-a955-4482-9d45-806bbea93d8e.png)
+
+WEB UI:
+
+![image](https://user-images.githubusercontent.com/113611989/201426210-fb2154d1-d8bd-4462-87b8-602c15575353.png)
+
+
