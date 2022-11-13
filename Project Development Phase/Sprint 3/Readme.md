@@ -29,7 +29,8 @@ TRANSFERRING DATA FROM NODE-RED INTO WEB UI:
 ![image](https://user-images.githubusercontent.com/113611989/201426117-ec3905a5-a955-4482-9d45-806bbea93d8e.png)
 
 WEB UI:
-
-![image](https://user-images.githubusercontent.com/113611989/201426210-fb2154d1-d8bd-4462-87b8-602c15575353.png)
-
+ Desktop View:
+  ![image](https://user-images.githubusercontent.com/113611989/201426210-fb2154d1-d8bd-4462-87b8-602c15575353.png)
+ Mobile View:
+  ![image](https://user-images.githubusercontent.com/113611989/201515775-34d6eeae-ef4a-408c-bb02-f4cbdc7cd96d.png)
 
