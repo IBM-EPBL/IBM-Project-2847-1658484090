@@ -29,8 +29,13 @@ TRANSFERRING DATA FROM NODE-RED INTO WEB UI:
 ![image](https://user-images.githubusercontent.com/113611989/201426117-ec3905a5-a955-4482-9d45-806bbea93d8e.png)
 
 WEB UI:
+
  Desktop View:
   ![image](https://user-images.githubusercontent.com/113611989/201426210-fb2154d1-d8bd-4462-87b8-602c15575353.png)
  Mobile View:
   ![image](https://user-images.githubusercontent.com/113611989/201515775-34d6eeae-ef4a-408c-bb02-f4cbdc7cd96d.png)
+  
+ Cloudant:
+   ![image](https://user-images.githubusercontent.com/113611989/201515885-1496446e-5c90-43b1-9f18-9c9601633ff4.png)
+   ![image](https://user-images.githubusercontent.com/113611989/201515928-6a3d20e9-9c9b-4e4f-b710-59bc7dd62eef.png)
 
