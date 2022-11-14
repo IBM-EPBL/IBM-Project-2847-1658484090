@@ -26,7 +26,7 @@ NODE-RED DASHBOARD:
 
 TRANSFERRING DATA FROM NODE-RED INTO WEB UI:
 
-![image](https://user-images.githubusercontent.com/113611989/201426117-ec3905a5-a955-4482-9d45-806bbea93d8e.png)
+![image](https://user-images.githubusercontent.com/113611989/201685457-2ba3d049-3ec7-415d-b156-152752be8dca.png)
 
 WEB UI:
 
