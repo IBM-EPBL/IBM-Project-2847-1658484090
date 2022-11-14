@@ -8,20 +8,20 @@ WEB UI LINK : [https://node-red-dashboard059.eu-gb.mybluemix.net/fire](https://n
 
 Results:
 
-![Screenshot (204)](https://user-images.githubusercontent.com/113611989/201425789-2f490855-c34b-42c4-a05f-8b3738735795.png)
+![Screenshot (224)](https://user-images.githubusercontent.com/113611989/201742587-3477f897-5401-4215-9649-9646b8ed3d7f.png)
 
 
-![image](https://user-images.githubusercontent.com/113611989/201425874-4d92e274-2e31-4a93-be38-62a7087f8cd3.png)
+![Screenshot (223)](https://user-images.githubusercontent.com/113611989/201742722-025b1eb6-e11a-4922-a370-5f0002af9220.png)
 
 
 TRANSFERRING DATA FROM IBM WATSON INTO NODE-RED:
 
-![image](https://user-images.githubusercontent.com/113611989/201425983-6dd6c9d1-a5d5-464b-ae7b-eae7f8e606a9.png)
+![Screenshot (221)](https://user-images.githubusercontent.com/113611989/201742863-ae20fa01-aab5-41dd-a265-40ecd0d6ec16.png)
 
 
 NODE-RED DASHBOARD:
 
-![image](https://user-images.githubusercontent.com/113611989/201426050-618e5e7c-a575-4a50-88ee-06ae6e32af89.png)
+![Screenshot (222)](https://user-images.githubusercontent.com/113611989/201743082-32de58c8-d5fe-4517-88b5-f5f4b3525d42.png)
 
 
 TRANSFERRING DATA FROM NODE-RED INTO WEB UI:
