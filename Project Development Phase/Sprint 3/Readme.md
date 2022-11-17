@@ -4,6 +4,8 @@ Check the Project:
 
 WOKWI SIMULATOR LINK : [https://wokwi.com/projects/348062828084593236](https://wokwi.com/projects/348062828084593236)
 
+NODE-RED DASHBOARD UILINK:[https://node-red-iwivz-2022-11-13.eu-gb.mybluemix.net/ui/#!/0?socketid=RNNTsORzKbrlp-UqAAAu](https://node-red-iwivz-2022-11-13.eu-gb.mybluemix.net/ui/#!/0?socketid=RNNTsORzKbrlp-UqAAAu)
+
 WEB UI LINK : [https://node-red-dashboard059.eu-gb.mybluemix.net/fire](https://node-red-dashboard059.eu-gb.mybluemix.net/fire)
 
 Results:
