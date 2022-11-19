@@ -1,144 +1,68 @@
-#include <time.h>
-#include <WiFi.h>          
-#include <PubSubClient.h>  
+import time
+import sys
+import ibmiotf.application
+import ibmiotf.device
+import random
+#Provide your IBM Watson Device Credentials
+organization = "pq685h"
+deviceType = "NodeMCU"
+deviceId = "12345"
+authMethod = "token"
+authToken = "12345678"
+# Initialize GPIO
+def myCommandCallback(cmd):
+ print("Command received: %s" % cmd.data['command'])
+ status=cmd.data['command']
+ if status=="alarmon":
+  print ("Alarm is on")
+ else:
+  print ("Alarm is off")
 
-#define ORG "pq685h"                      
-#define DEVICE_TYPE "NodeMCU"             
-#define DEVICE_ID "12345"            
-#define TOKEN "12345678" 
-
-char server[]= ORG ".messaging.internetofthings.ibmcloud.com";        
-char publishTopic[] = "iot-2/evt/data/fmt/json";                                               
-char authMethod[] = "use-token-auth";                                   
-char token[] = TOKEN;
-char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;          
-
-WiFiClient wifiClient;                                                 
-PubSubClient client(server, 1883, wifiClient);    
-
-float temperature  = 0;
-int gas = 0;
-int flame = 0;
-
-String flame_status = "";
-String Gas_status = "";
-String exhaust_fan_status = "";
-String sprinkler_status = "";
+ #print(cmd)
 
 
-void setup() {
-  Serial.begin(99900);
-   wifiConnect();
-   mqttConnect();
-}
+try:
+    deviceOptions = {"org": organization, "type": deviceType, "id": deviceId, "auth-method":
+                     authMethod, "auth-token": authToken}
+    deviceCli = ibmiotf.device.Client(deviceOptions)
+#..............................................
+except Exception as e:
+    print("Caught exception connecting device: %s" % str(e))
+    sys.exit()
+# Connect and send a datapoint "hello" with value "world" into the cloud as an event of type"greeting" 10 times
+deviceCli.connect()
+while True:
+ #Get Sensor Data from DHT11
 
-void loop() {
+ temp=random.randint(-20,125)
+ Humid=random.randint(0,100)
+ Gas=random.randint(0,1000);
+ Flame=random.randint(200,1024);
+ flame1 = random.randint(0,1)
+ if flame1==0:
+     flame_status = "No Fire"
+     sprinkler_status="Not Working"
+ else:
+     flame_status = "Fire is Detected"
+     sprinkler_status="Working"
+ if Gas > 100:
+     Gas_status="Gas Leakage is Detected"
+     Exhaust_fan="Working"
+ else:
+     Gas_status="No Gas Leakage is Detected"
+     Exhaust_fan="Not Working"
 
-  srand(time(0));
+ data = { 'temp' : temp, 'Humid': Humid , 'Gas':Gas , 'Flame':Flame , 'flame_status':flame_status, 'sprinkler_status':sprinkler_status, 'Gas_status':Gas_status, 'Exhaust_fan':Exhaust_fan}
+ #print data
+ def myOnPublishCallback():
+     print (" Temperature = %s C\n" % temp,"Gas = %s %%\n" % Gas ,"Humidity = %s %%\n" % Humid,"Flame = %s\n"%Flame,"Fire Status = %s\n"%flame_status,"Sprinkler_Status = %s\n"%sprinkler_status,"Gas_Status = %s\n"%Gas_status,"Exhaust_fan = %s\n"%Exhaust_fan)
+ success = deviceCli.publishEvent("IoTSensor", "json", data, qos=0,
+on_publish=myOnPublishCallback)
+ time.sleep(10)
+ if not success:
+  print("Not connected to IoTF")
+  time.sleep(10)
 
-    //initial variables and random generated data
-
-    temperature = random(-20,125);
-    gas = random(0,1000);
-    int flamereading = random(200,1024);
-    flame = map(flamereading,200,1024,0,2);
-
-    //set a flame status
-
-    switch (flame) {
-    case 0:
-        flame_status = "No Fire";
-        break;
-    case 1: 
-        flame_status = "Fire is Detected";
-        break;
-    }
-
-    //send the sprinkler status
-
-    if(flame==1){
-        sprinkler_status = "Working";
-    }
-    else{
-        sprinkler_status = "Not Working";
-
-    }
-
-    //toggle the fan according to gas reading
-
-    if(gas > 100){
-        Gas_status = "Gas Leakage is Detected";
-        exhaust_fan_status = "Working";
-
-    }
-    else{
-        Gas_status = "No Gas Leakage is Detected";
-        exhaust_fan_status = "Not Working";
-    }
-
-    //json format for IBM Watson
-
-    String payload = "{";
-    payload+="\"gas\":";
-    payload+=gas;
-    payload+=",";
-    payload+="\"temperature\":";
-    payload+=(int)temperature;
-    payload+=",";
-    payload+="\"flame\":";
-    payload+=flamereading;
-    payload+=",";
-    payload+="\"fire_status\":\""+flame_status+"\",";
-    payload+="\"sprinkler_status\":\""+sprinkler_status+"\",";
-    payload+="\"Gas_status\":\""+Gas_status+"\",";
-    payload+="\"exhaust_fan_status\":\""+exhaust_fan_status+"\"}";
-  
-    if(client.publish(publishTopic, (char*) payload.c_str()))           
-    {
-        Serial.println("Publish OK");
-    }
-    else{
-        Serial.println("Publish failed");
-    }
-    delay(1000);
-  
-
-    if (!client.loop()) 
-    {
-      mqttConnect();                              
-    } 
-}
-
-
-void wifiConnect()
-{
-  Serial.print("Connecting to "); 
-  Serial.print("Wifi");
-  WiFi.begin("Wokwi-GUEST", "", 6);
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.print("WiFi connected, IP address: "); 
-  Serial.println(WiFi.localIP());
-  
-}
-
-
-void mqttConnect() 
-{
-  if (!client.connected()) 
-  {
-    Serial.print("Reconnecting MQTT client to "); 
-    Serial.println(server);
-    while (!client.connect(clientId, authMethod, token))
-    {
-      Serial.print(".");
-      delay(500);
-    }
-    
-    Serial.println();
-  }
-}
-
+ deviceCli.commandCallback = myCommandCallback
+# Disconnect the device and application from the cloud
+deviceCli.disconnect()
